@@ -3,7 +3,7 @@ import './App.css'
 import { login, logout } from './store/authSlice';
 import { Provider, useDispatch } from 'react-redux';
 import { authService } from './appwrite/auth';
-import { Header, Footer } from './components';
+import { Header, Footer } from './components/index';
 
 function App() {
   const [loading, setLoading] = useState(true);
