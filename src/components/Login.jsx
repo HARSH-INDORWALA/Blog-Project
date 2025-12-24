@@ -18,7 +18,7 @@ function Login(){
                 const userdata=authService.getCurrentUser()
                 if(userdata){
                     dispatch(authLogin(data))
-                    navigate ="/"
+                    navigate("/");
                 }
             }
         } catch (error) {

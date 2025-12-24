@@ -4,6 +4,7 @@ import { login, logout } from './store/authSlice';
 import { Provider, useDispatch } from 'react-redux';
 import { authService } from './appwrite/auth';
 import { Header, Footer } from './components/index';
+import { Outlet } from 'react-router';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -27,7 +28,9 @@ function App() {
     <div className='min-h-screen flex flex-wrap content-between bg-gray-500 '>
       <div className='w-full block'>
         <Header/>
-        
+        <main>
+          <Outlet/>
+        </main>
         <Footer/>
       </div>
     </div>

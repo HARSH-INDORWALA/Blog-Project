@@ -24,16 +24,16 @@ import { Client, Account ,ID} from "appwrite";
                 throw error;
             }
         }
-        async login({email,passsword}){
+        async login({email,password}){
             try {
-                return await this.account.createSession(email, passsword);
+                return await this.account.createEmailPasswordSession(email, password);
             } catch (error) {
                 throw error;
             }
         }
         async getCurrentUser(){
             try {
-                return await this.account.getSession();
+                return await this.account.get();
             } catch (error) {
                 console.log("Appwrite Error :: Get Current User",error);
             } 

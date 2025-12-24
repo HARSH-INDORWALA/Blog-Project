@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react";
 import appwriteService from "../appwrite/conf";
 import { Container, PostCard } from "../components";
+import { Link } from "react-router";
 function Home(){
     const [posts,setPosts]=useState([]);
     useEffect(()=>{
@@ -20,6 +21,7 @@ function Home(){
                             <h1 className="text-2xl font-bold hover:text-gray-500">
                                 Login to read posts
                             </h1>
+                            <Link to="/login" className="text-blue-500 underline" />
                         </div>
                     </div>
                 </Container>
