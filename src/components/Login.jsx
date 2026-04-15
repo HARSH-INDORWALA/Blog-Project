@@ -5,14 +5,14 @@ import authService from "../appwrite/auth";
 import {login as authLogin} from "../store/authSlice";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-function Login(){
+function Login(data){
     const navigate=useNavigate();
     const dispatch=useDispatch();
     const {register,handleSubmit} = useForm();
     const [error,setError] =useState(null);
     const login= async(data)=>{
         try {
-            const session=await authService.login()
+            const session=await authService.login(data)
             if(session){
                 setError("")
                 const userdata=authService.getCurrentUser()
