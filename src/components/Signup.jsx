@@ -13,10 +13,11 @@ function Signup(){
     const [error,setError] =useState(null); 
     const signup= async(data)=>{
         try {
-            const user=await authService.createAccount(data)
-            if(user){
+            const userdata = await authService.createAccount(data)
+            if(userdata){
+                const user = await authService.getCurrentUser(); 
                 setError("")
-                dispatch(login(data))
+                dispatch(login(user))
                 navigate("/")
             }
         } catch (error) {

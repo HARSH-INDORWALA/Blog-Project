@@ -1,29 +1,29 @@
 import { Navigate,useNavigate,useParams } from "react-router";
 import { useState,useEffect } from "react";
 import appwriteService from "../appwrite/conf";
-import { Container, PostCard } from "../components";
+import { Container, PostForm } from "../components";
 function EditPost(){
-    const [posts,setPosts]=useState(null)
+    const [post,setPost]=useState(null)
     const {slug}=useParams()
     const navigate=useNavigate()
     useEffect(()=>{
         if(slug){
-            appwriteService.updatePost(slug).then((post)=>{
+            appwriteService.getPost(slug).then((post)=>{
                 if(post){
-                    setPosts(post)
-                }
-                else {
-                    navigate("/")
+                    setPost(post)
                 }
             })
         }
+         else {
+                    navigate("/")
+                }
     },[slug,navigate])
-    return posts?
+    return post? (
     <div className="py-8">
         <Container>
-            <PostCard post={posts}/>
+            <PostForm post = {post}/>
         </Container>
-    </div>:null
+    </div>):null
 }
 
 export default EditPost;

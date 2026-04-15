@@ -12,7 +12,12 @@ import { Client, Account ,ID} from "appwrite";
 
         async createAccount({email, password,name}) {     
             try {
-                const userAccount= await this.account.create(ID.unique(), email, password, name);
+                const userAccount= await this.account.create({
+                    userId: ID.unique(),
+                    email : email,
+                    password : password,
+                    name : name
+                });
                 if(userAccount){
                         return this.login({email, password});
                 }
@@ -26,7 +31,9 @@ import { Client, Account ,ID} from "appwrite";
         }
         async login({email,password}){
             try {
-                return await this.account.createEmailPasswordSession(email, password);
+                return await this.account.createEmailPasswordSession({
+                    email : email, password : password
+                });
             } catch (error) {
                 throw error;
             }

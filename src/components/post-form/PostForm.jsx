@@ -18,9 +18,9 @@ function PostForm({post}){
 
     const submit=async(data)=>{
         if(post){
-            const file=data.image[0]?await appwriteService.uploadFile(data.image[0]):null;
+            const file  = data.image[0]?await appwriteService.uploadFile(data.image[0]):null;
             if(file){
-                appwriteService.deleteFile(post.feautredImage);
+                appwriteService.deleteFile(post.featuredImage);
             }
             const updatedPost= await appwriteService.updatePost(post.$id,{
                 ...data,
@@ -34,7 +34,6 @@ function PostForm({post}){
                     ...data,
                     featuredImage : file.$id,
                     userId : userData.$id,
-
                 });
                 navigate(`/post/${newPost.$id}`);
             }
@@ -99,7 +98,7 @@ function PostForm({post}){
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            src={appwriteService.getFileView(post.featuredImage)}
                             alt={post.title}
                             className="rounded-lg"
                         />
